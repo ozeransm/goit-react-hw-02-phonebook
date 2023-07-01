@@ -19,7 +19,7 @@ import Notiflix from 'notiflix';
   
   addToContact = ({ name, number })=>{
       this.setState((prev)=>{
-      const flagName = prev.contacts.filter((el)=>el.name.includes(name.trim())).length;
+      const flagName = prev.contacts.filter((el)=>el.name===(name.trim())).length;
       return !flagName ? {...prev, contacts: [...prev.contacts, {id: nanoid(), name, number}]} : Notiflix.Notify.failure('Dublicate name user');
             
     })
