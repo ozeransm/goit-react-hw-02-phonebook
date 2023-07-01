@@ -35,10 +35,10 @@ import Notiflix from 'notiflix';
   handlerBtnDel = (data)=>{
     this.setState((prev)=>{
       prev.contacts.map((obj,i)=>{
-          obj.id===data && prev.contacts.splice(i,1);
+          return obj.id===data && prev.contacts.splice(i,1);
 
       })
-      return {...prev}
+       return {...prev}
     })
     
   }
