@@ -35,8 +35,9 @@ import Notiflix from 'notiflix';
   }
   handlerBtnDel = (data)=>{
     this.setState((prev)=>{
-      const newArr = [...prev.contacts]
-      newArr.map((obj,i)=>obj.id===data && newArr.splice(i,1))
+      const newArr = prev.contacts.filter((obj)=>obj.id!==data)
+      // const newArr = [...prev.contacts]
+      // newArr.map((obj,i)=>obj.id===data && newArr.splice(i,1))
       return {...prev, contacts:[...newArr]}
     })
     

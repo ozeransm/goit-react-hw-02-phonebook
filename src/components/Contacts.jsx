@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 export const Contacts = ({ data, formInpFilter, handlerBtnDel })=>{
     
     return(
-            <ul>
+        <ul>
             {
-                data.map((el)=><ContactItem key={el.id} id={el.id} name={el.name} number={el.number} filter={formInpFilter} handlerBtnDel={handlerBtnDel}/>)
+              data.map((el)=><ContactItem key={el.id} id={el.id} name={el.name} number={el.number} filter={formInpFilter} handlerBtnDel={handlerBtnDel}/>)
             }
-            </ul>
+        </ul>
     ) 
 }
 Contacts.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            id:PropTypes.string,
+            name: PropTypes.string,
+            number: PropTypes.string,
+        })
+    ),
     formInpFilter: PropTypes.string,
 }

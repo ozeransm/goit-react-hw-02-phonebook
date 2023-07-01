@@ -3,7 +3,8 @@
     margin-left: auto;
     margin-right: auto;
 }
-.common > label > p{
+.common span{
+    display: block;
     padding: 0;
     margin: 0 0 5px 0;
 }

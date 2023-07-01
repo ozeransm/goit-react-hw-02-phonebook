@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export const FormInp = ({handlerInp, formInpName})=>{
     return(
         <label htmlFor="name">
-            <p>Name</p>
+            <span>Name</span>
         <input
             type="text"
             name="name"

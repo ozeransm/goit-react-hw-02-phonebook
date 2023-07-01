@@ -9,29 +9,25 @@ class Form extends Component {
         name: '',
         number: '',
     }
-    handlerBtn = (e)=>{
+    handlerSubmit = (e)=>{
         e.preventDefault();
         this.setState({name: '',number: ''});
         this.props.addToContact(this.state)
     }
 
-    handlerInp = (e)=>{
+    handlerInp = ({target:{name, value}})=>{
         this.setState({
-          name: e.target.value,
+          [name]: value,
         })
        
     }
-    handlerInpTel = (e)=>{
-        this.setState({
-          number: e.target.value,
-        })
-    }
+    
     render(){
         return(
             <form className={css.common} action="submit">
                     <FormInp handlerInp={this.handlerInp} formInpName={this.state.name}/>
-                    <FormInpTel handlerInpTel={this.handlerInpTel} formInpNumber={this.state.number}/>
-                    <FormBtn handlerBtn={this.handlerBtn}/>
+                    <FormInpTel handlerInpTel={this.handlerInp} formInpNumber={this.state.number}/>
+                    <FormBtn handlerSubmit={this.handlerSubmit}/>
             </form> 
         )
     }
