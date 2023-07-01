@@ -2,7 +2,7 @@ import { FormBtn } from "./FormBtn"
 import { FormInp } from "./FormInp"
 import { FormInpTel } from "./FormInpTel"
 import { Component } from "react"
-
+import css from './Form.module.css'
 class Form extends Component {
     
     state = {
@@ -28,7 +28,7 @@ class Form extends Component {
     }
     render(){
         return(
-            <form action="submit">
+            <form className={css.common} action="submit">
                     <FormInp handlerInp={this.handlerInp} formInpName={this.state.name}/>
                     <FormInpTel handlerInpTel={this.handlerInpTel} formInpNumber={this.state.number}/>
                     <FormBtn handlerBtn={this.handlerBtn}/>

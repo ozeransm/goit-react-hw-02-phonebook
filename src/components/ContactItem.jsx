@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export const ContactItem = ({id, name, number, filter, handlerBtnDel})=>{
     
     return(
@@ -8,4 +9,12 @@ export const ContactItem = ({id, name, number, filter, handlerBtnDel})=>{
        </>
     )
     
+}
+
+ContactItem.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  filter: PropTypes.string,
+  
 }

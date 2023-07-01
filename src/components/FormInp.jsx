@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
+
 export const FormInp = ({handlerInp, formInpName})=>{
-    // console.log(handlerInp)
     return(
         <label htmlFor="name">
-            Name
+            <p>Name</p>
         <input
             type="text"
             name="name"
@@ -14,4 +15,8 @@ export const FormInp = ({handlerInp, formInpName})=>{
         />
         </label>
     )
+}
+FormInp.propTypes = {
+    formInpName: PropTypes.string,
+    
 }

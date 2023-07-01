@@ -3,6 +3,7 @@ import  Form  from "./Form";
 import { nanoid } from 'nanoid'
 import { Contacts } from "./Contacts"
 import { FindContact } from "./FindContact"
+import css from './App.module.css'
 import Notiflix from 'notiflix';
  class App extends Component {
   state = {
@@ -18,7 +19,7 @@ import Notiflix from 'notiflix';
   
   addToContact = ({ name, number })=>{
       this.setState((prev)=>{
-      const flagName = prev.contacts.filter((el)=>el.name.includes(name)).length;
+      const flagName = prev.contacts.filter((el)=>el.name.includes(name.trim())).length;
       return !flagName ? {...prev, contacts: [...prev.contacts, {id: nanoid(), name, number}]} : Notiflix.Notify.failure('Dublicate name user');
             
     })
@@ -42,12 +43,13 @@ import Notiflix from 'notiflix';
   }
   render(){
     return(
-      <>
-      <Form addToContact={this.addToContact}/>
-      <h2>Contacts</h2>
-      <FindContact handlerFind={this.handlerFind} />
-      <Contacts data={this.state.contacts} formInpFilter={this.state.filter} handlerBtnDel={this.handlerBtnDel}/>
-      </>
+      <div className={css.common}>
+        <h1>Phonebook</h1>
+        <Form addToContact={this.addToContact}/>
+        <h2>Contacts</h2>
+        <FindContact handlerFind={this.handlerFind} />
+        <Contacts data={this.state.contacts} formInpFilter={this.state.filter} handlerBtnDel={this.handlerBtnDel}/>
+      </div>
     ); 
   }
    

@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 export const FormInpTel = ({handlerInpTel, formInpNumber})=>{
     return(
         <label htmlFor="number">
-            Number
+           <p>Number</p> 
         <input
         type="tel"
         name="number"
@@ -13,4 +14,8 @@ export const FormInpTel = ({handlerInpTel, formInpNumber})=>{
         />
         </label>
     )
+}
+FormInpTel.propTypes = {
+    formInpNumber: PropTypes.string,
+    
 }
