@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { Form } from "./Form";
+import  Form  from "./Form";
 import { nanoid } from 'nanoid'
 import { Contacts } from "./Contacts"
 import { FindContact } from "./FindContact"
+import Notiflix from 'notiflix';
  class App extends Component {
   state = {
     contacts: [
@@ -12,44 +13,42 @@ import { FindContact } from "./FindContact"
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
     filter: '',
-    name: '',
-    number: '',
-  }
-  
-  handlerBtn = (e)=>{
-    e.preventDefault();
-    // e.target.form.elements[0].value
-    const nameContactObj = {id: nanoid(), name: this.state.name, number: this.state.number};
-    this.setState((prev)=>{
-       return {...prev,contacts:[...prev.contacts, nameContactObj]}
-    })
-    this.setState({name: '',number: ''});
-  }
-  handlerInp = (e)=>{
-    this.setState({
-      name: e.target.value,
-    })
    
   }
-
-  handlerInpTel = (e)=>{
-    this.setState({
-      number: e.target.value,
+  
+  addToContact = ({ name, number })=>{
+      this.setState((prev)=>{
+      const flagName = prev.contacts.filter((el)=>el.name.includes(name)).length;
+      return !flagName ? {...prev, contacts: [...prev.contacts, {id: nanoid(), name, number}]} : Notiflix.Notify.failure('Dublicate name user');
+            
     })
+    
   }
+
+  
   handlerFind = (e)=>{
     this.setState({
       filter: e.target.value,
     })
     
   }
+  handlerBtnDel = (data)=>{
+    this.setState((prev)=>{
+      prev.contacts.map((obj,i)=>{
+          obj.id===data && prev.contacts.splice(i,1);
+
+      })
+      return {...prev}
+    })
+    
+  }
   render(){
     return(
       <>
-      <Form formInpName={this.state.name} formInpNumber={this.state.number} handlerBtn={this.handlerBtn} handlerInp={this.handlerInp} handlerInpTel={this.handlerInpTel}/>
+      <Form addToContact={this.addToContact}/>
       <h2>Contacts</h2>
       <FindContact handlerFind={this.handlerFind} />
-      <Contacts data={this.state.contacts} formInpFilter={this.state.filter}/>
+      <Contacts data={this.state.contacts} formInpFilter={this.state.filter} handlerBtnDel={this.handlerBtnDel}/>
       </>
     ); 
   }
