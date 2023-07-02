@@ -13,10 +13,10 @@ export const Contacts = ({ data, formInpFilter, handlerBtnDel })=>{
 Contacts.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.shape({
-            id:PropTypes.string,
-            name: PropTypes.string,
-            number: PropTypes.string,
+            id:PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            number: PropTypes.string.isRequired,
         })
-    ),
+    ).isRequired,
     formInpFilter: PropTypes.string,
 }
